@@ -63,9 +63,4 @@ public class CustomArrayList<T> {
         Arrays.sort((T[]) elements, 0, size, comparator);
     }
 
-    public int size() {
-        return size;
-    }
-
-
 }

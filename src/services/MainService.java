@@ -30,7 +30,7 @@ public void start() {
                 check = choise;
 
                 if (check ==1){while (check!=0) { System.out.println("Which operation do you want to use?\n" +
-                        "1. Add\n" + "2. Remove\n" + "3. Print\n" + "0. Exit");
+                        "1. Add\n" + "2. Remove\n" + "3. Print\n" + "4. Check for element presence\n" + "5. Get element by index\n" + "6. Sort\n" + "0. Exit");
                     try {
                         choise = inputDataService.inputInt();
                         check = choise;
@@ -42,7 +42,17 @@ public void start() {
                             list1.remove(inputDataService.inputString());
                         } else if (check == 3) {
                             list1.print();
+                        } else if (check == 4) {
+                            System.out.println("Which element do you want to check in list?\n");
+                            System.out.println(list1.contains(inputDataService.inputString()));
+                        } else if (check == 5) {
+                            System.out.println("Enter the index of the element you want to get\n");
+                            System.out.println(list1.get(inputDataService.inputInt() - 1));
+                        } else if (check == 6) {
+                            list1.sort(String::compareTo);
+                            list1.print();
                         }
+
 
                     } catch (InputMismatchException e) {
                         System.out.println("Wrong choice!!!");
@@ -51,7 +61,7 @@ public void start() {
                 }}
                 else if (check == 2){
                     while (check!=0) { System.out.println("Which operation do you want to use?\n" +
-                            "1. Add\n" + "2. Remove\n" + "3. Print\n" + "0. Exit");
+                            "1. Add\n" + "2. Remove\n" + "3. Print\n" + "4. Check for element presence\n" + "5. Get element by index\n" + "6. Sort\n" + "0. Exit");
                         try {
                             choise = inputDataService.inputInt();
                             check = choise;
@@ -62,6 +72,15 @@ public void start() {
                                 System.out.println("Which element do you want to remove?\n");
                                 list2.remove(inputDataService.inputInt());
                             } else if (check == 3) {
+                                list2.print();
+                            }else if (check == 4) {
+                                System.out.println("Which element do you want to check in list?\n");
+                                System.out.println(list2.contains(inputDataService.inputInt()));
+                            } else if (check == 5) {
+                                System.out.println("Enter the index of the element you want to get\n");
+                                System.out.println(list2.get(inputDataService.inputInt() - 1));
+                            } else if (check == 6) {
+                                list2.sort(Integer::compareTo);
                                 list2.print();
                             }
 
@@ -78,4 +97,7 @@ public void start() {
         catch (NullPointerException | ArrayIndexOutOfBoundsException e) {System.out.println("You have gone beyond the acceptable limits!!!");}
         }
 
-} }
+}
+
+
+}
