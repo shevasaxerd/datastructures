@@ -35,18 +35,18 @@ public void start() {
                         choise = inputDataService.inputInt();
                         check = choise;
                         if (check == 1) {
-                            System.out.println("What do you want to add?\n");
+                            System.out.println("What do you want to add?");
                             list1.add(inputDataService.inputString());
                         } else if (check == 2) {
-                            System.out.println("Which element do you want to remove?\n");
+                            System.out.println("Which element do you want to remove?");
                             list1.remove(inputDataService.inputString());
                         } else if (check == 3) {
                             list1.print();
                         } else if (check == 4) {
-                            System.out.println("Which element do you want to check in list?\n");
+                            System.out.println("Which element do you want to check in list?");
                             System.out.println(list1.contains(inputDataService.inputString()));
                         } else if (check == 5) {
-                            System.out.println("Enter the index of the element you want to get\n");
+                            System.out.println("Enter the index of the element you want to get");
                             System.out.println(list1.get(inputDataService.inputInt() - 1));
                         } else if (check == 6) {
                             list1.sort(String::compareTo);
@@ -66,18 +66,18 @@ public void start() {
                             choise = inputDataService.inputInt();
                             check = choise;
                             if (check == 1) {
-                                System.out.println("What do you want to add?\n");
+                                System.out.println("What do you want to add?");
                                 list2.add(inputDataService.inputInt());
                             } else if (check == 2) {
-                                System.out.println("Which element do you want to remove?\n");
+                                System.out.println("Which element do you want to remove?");
                                 list2.remove(inputDataService.inputInt());
                             } else if (check == 3) {
                                 list2.print();
                             }else if (check == 4) {
-                                System.out.println("Which element do you want to check in list?\n");
+                                System.out.println("Which element do you want to check in list?");
                                 System.out.println(list2.contains(inputDataService.inputInt()));
                             } else if (check == 5) {
-                                System.out.println("Enter the index of the element you want to get\n");
+                                System.out.println("Enter the index of the element you want to get");
                                 System.out.println(list2.get(inputDataService.inputInt() - 1));
                             } else if (check == 6) {
                                 list2.sort(Integer::compareTo);
