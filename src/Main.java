@@ -1,5 +1,6 @@
 import models.CustomSet;
 import models.CustomArrayList;
+import models.KeyValueStore;
 import services.InputDataServiceImpl;
 import services.MainService;
 
@@ -11,7 +12,11 @@ public class Main {
         CustomArrayList<String> list1 = new CustomArrayList<>();
         CustomSet<String> set1 = new CustomSet<>();
         CustomSet<Integer> set2 = new CustomSet<>();
-        MainService mainService = new MainService(list1, list2, set1, set2, inputDataServiceImpl);
+        KeyValueStore<String, Integer> kvStore1 = new KeyValueStore<>();
+        KeyValueStore<String, String> kvStore2 = new KeyValueStore<>();
+        KeyValueStore<Integer, Integer> kvStore3 = new KeyValueStore<>();
+        KeyValueStore<Integer, String> kvStore4 = new KeyValueStore<>();
+        MainService mainService = new MainService(list1, list2, set1, set2,kvStore1,kvStore2, kvStore3, kvStore4, inputDataServiceImpl);
         mainService.start();
     }
 }

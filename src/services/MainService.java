@@ -1,6 +1,8 @@
 package services;
 import models.CustomArrayList;
 import models.CustomSet;
+import models.KeyValueStore;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -10,13 +12,21 @@ private CustomArrayList<String> list1;
 private CustomArrayList<Integer> list2;
 private CustomSet<String> set1;
 private CustomSet<Integer> set2;
+private KeyValueStore<String, Integer> kvStore1;
+private KeyValueStore<String, String> kvStore2;
+private KeyValueStore<Integer, Integer> kvStore3;
+private KeyValueStore<Integer, String> kvStore4;
 private InputDataService inputDataService;
 public MainService(){}
-public MainService(CustomArrayList<String> list1, CustomArrayList<Integer> list2,CustomSet<String> set1, CustomSet<Integer> set2, InputDataService inputDataService){
+public MainService(CustomArrayList<String> list1, CustomArrayList<Integer> list2,CustomSet<String> set1, CustomSet<Integer> set2, KeyValueStore<String, Integer> kvStore1,KeyValueStore<String, String> kvStore2, KeyValueStore<Integer, Integer> kvStore3,KeyValueStore<Integer, String> kvStore4, InputDataService inputDataService){
     this.list1=list1;
     this.list2=list2;
     this.set1=set1;
     this.set2=set2;
+    this.kvStore1=kvStore1;
+    this.kvStore2=kvStore2;
+    this.kvStore3=kvStore3;
+    this.kvStore4=kvStore4;
     this.inputDataService=inputDataService;
 }
 
@@ -154,6 +164,135 @@ public void start() {
                         catch (NullPointerException | ArrayIndexOutOfBoundsException e) {System.out.println("You have gone beyond the acceptable limits!!!");}
                     }
                 }
+            }
+            if (check == 3) {
+                System.out.println("What type of data do you want to use?\n" + "1. String key + integer value\n" + "2. String key + string value\n"+ "3. Integer key + integer value\n" + "2. Integer key + string value\n"+ "0. Back");
+                choise = inputDataService.inputInt();
+                check = choise;
+
+                if (check ==1){while (check!=0) { System.out.println("Which operation do you want to use?\n" +
+                        "1. Add key & value\n" + "2. Remove\n" + "3. Get value by key\n" + "4. Print pairs \n"  + "0. Exit");
+                    try {
+                        choise = inputDataService.inputInt();
+                        check = choise;
+                        if (check == 1) {
+                            System.out.println("Enter key(string): ");
+                            String key = inputDataService.inputString();
+                            System.out.println("Enter value(integer): ");
+                            int value = inputDataService.inputInt();
+                            kvStore1.put(key, value);
+                        } else if (check == 2) {
+                            System.out.println("Enter key(string) to remove: ");
+                            String key = inputDataService.inputString();
+                            kvStore1.remove(key);
+                        } else if (check == 3) {
+                            System.out.println("Enter key(string) to get value: ");
+                            String key = inputDataService.inputString();
+                            System.out.println(kvStore1.get(key));
+                        } else if (check == 4) {
+                            kvStore1.forEachPair();
+                        }
+
+
+                    } catch (InputMismatchException e) {
+                        System.out.println("Wrong choice!!!");
+
+                    }
+                }}
+                else if (check == 2){
+                    while (check!=0) { System.out.println("Which operation do you want to use?\n" +
+                            "1. Add key & value\n" + "2. Remove\n" + "3. Get value by key\n" + "4. Print pairs \n"  + "0. Exit");
+                        try {
+                            choise = inputDataService.inputInt();
+                            check = choise;
+                            if (check == 1) {
+                                System.out.println("Enter key(string): ");
+                                String key = inputDataService.inputString();
+                                System.out.println("Enter value(string): ");
+                                String value = inputDataService.inputString();
+                                kvStore2.put(key, value);
+                            } else if (check == 2) {
+                                System.out.println("Enter key(string) to remove: ");
+                                String key = inputDataService.inputString();
+                                kvStore2.remove(key);
+                            } else if (check == 3) {
+                                System.out.println("Enter key(string) to get value: ");
+                                String key = inputDataService.inputString();
+                                System.out.println(kvStore2.get(key));
+                            }else if (check == 4) {
+                                kvStore2.forEachPair();
+                            }
+
+
+                        } catch (InputMismatchException e) {
+                            System.out.println("Wrong choice!!!");
+                        }
+                        catch (NullPointerException | ArrayIndexOutOfBoundsException e) {System.out.println("You have gone beyond the acceptable limits!!!");}
+                    }
+                }
+                else if (check == 3){
+                    while (check!=0) { System.out.println("Which operation do you want to use?\n" +
+                            "1. Add key & value\n" + "2. Remove\n" + "3. Get value by key\n" + "4. Print pairs \n"  + "0. Exit");
+                        try {
+                            choise = inputDataService.inputInt();
+                            check = choise;
+                            if (check == 1) {
+                                System.out.println("Enter key(integer): ");
+                                int key = inputDataService.inputInt();
+                                System.out.println("Enter value(integer): ");
+                                int value = inputDataService.inputInt();
+                                kvStore3.put(key, value);
+                            } else if (check == 2) {
+                                System.out.println("Enter key(integer) to remove: ");
+                                int key = inputDataService.inputInt();
+                                kvStore3.remove(key);
+                            } else if (check == 3) {
+                                System.out.println("Enter key(integer) to get value: ");
+                                int key = inputDataService.inputInt();
+                                System.out.println(kvStore3.get(key));
+                            }else if (check == 4) {
+                                kvStore3.forEachPair();
+                            }
+
+
+                        } catch (InputMismatchException e) {
+                            System.out.println("Wrong choice!!!");
+                        }
+                        catch (NullPointerException | ArrayIndexOutOfBoundsException e) {System.out.println("You have gone beyond the acceptable limits!!!");}
+                    }
+                }
+                else if (check == 4){
+                    while (check!=0) { System.out.println("Which operation do you want to use?\n" +
+                            "1. Add key & value\n" + "2. Remove\n" + "3. Get value by key\n" + "4. Print pairs \n"  + "0. Exit");
+                        try {
+                            choise = inputDataService.inputInt();
+                            check = choise;
+                            if (check == 1) {
+                                System.out.println("Enter key(integer): ");
+                                int key = inputDataService.inputInt();
+                                System.out.println("Enter value(string): ");
+                                String value = inputDataService.inputString();
+                                kvStore4.put(key, value);
+                            } else if (check == 2) {
+                                System.out.println("Enter key(integer) to remove: ");
+                                int key = inputDataService.inputInt();
+                                kvStore4.remove(key);
+                            } else if (check == 3) {
+                                System.out.println("Enter key(integer) to get value: ");
+                                int key = inputDataService.inputInt();
+                                System.out.println(kvStore4.get(key));
+                            }else if (check == 4) {
+                                kvStore4.forEachPair();
+                            }
+
+
+                        } catch (InputMismatchException e) {
+                            System.out.println("Wrong choice!!!");
+                        }
+                        catch (NullPointerException | ArrayIndexOutOfBoundsException e) {System.out.println("You have gone beyond the acceptable limits!!!");}
+                    }
+                }
+
             }
 
         } catch(InputMismatchException e) {System.out.println("Wrong choice!!!");}
