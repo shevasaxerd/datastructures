@@ -3,20 +3,21 @@ package models;
 import java.util.Arrays;
 import java.util.Comparator;
 
-
-public class CustomArrayList<T> {
-    private Object[] elements;
+public class CustomSet<T> {private Object[] elements;
     private int size;
     private static final int DEFAULT_CAPACITY = 10;
 
-    public CustomArrayList() {
+    public CustomSet() {
         elements = new Object[DEFAULT_CAPACITY];
         size = 0;
     }
 
     public void add(T element) {
-        ensureCapacity();
-        elements[size++] = element;
+        boolean found = contains(element);
+        if (!found) {
+            ensureCapacity();
+            elements[size++] = element;
+        } else {System.out.println("Element already exists!!!");}
     }
 
     public boolean remove(T element) {
