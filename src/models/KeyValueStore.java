@@ -2,30 +2,67 @@ package models;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.LinkedList;
 import java.util.Iterator;
 
 public class KeyValueStore<K, V> {
-    private HashMap<K, V> store;
+    private static class Node<K, V> {
+        K key;
+        V value;
 
-    public KeyValueStore() {
-        store = new HashMap<>();
+        Node(K key, V value) {
+            this.key = key;
+            this.value = value;
+        }
     }
 
+    private final int SIZE = 16;
+    private LinkedList<Node<K, V>>[] table;
+
+    public KeyValueStore() {
+        table = new LinkedList[SIZE];
+        for (int i = 0; i < SIZE; i++) {
+            table[i] = new LinkedList<>();
+        }
+    }
+
+    private int getHash (K key) {
+        return Math.abs(key.hashCode()) % SIZE;
+    }
     public void put(K key, V value) {
-        store.put(key, value);
+        int index = getHash(key);
+        LinkedList<Node<K, V>> bucket = table[index];
+        for (Node<K, V> node : bucket) {
+            if (node.key.equals(key)) {
+                node.value = value;
+                return;
+            }
+        }
+        bucket.add(new Node<>(key, value));
     }
 
     public V get(K key) {
-        return store.get(key);
+        int index = getHash(key);
+        LinkedList<Node<K, V>> bucket = table[index];
+        for (Node<K, V> node : bucket) {
+            if (node.key.equals(key)) {
+                return node.value;
+            }
+        }
+        return null;
     }
 
-    public boolean remove(K key) {
-        return store.remove(key) != null;
+    public void remove(K key) {
+        int index = getHash(key);
+        LinkedList<Node<K, V>> bucket = table[index];
+        bucket.removeIf(node -> node.key.equals(key));
     }
 
     public void forEachPair() {
-        for (Map.Entry<K, V> entry : store.entrySet()) {
-            System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
+        for (LinkedList<Node<K, V>> bucket : table) {
+            for (Node<K, V> node : bucket) {
+                System.out.println("Key: " + node.key + ", Value: " + node.value);
+            }
         }
     }
 }
