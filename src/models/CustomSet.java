@@ -23,7 +23,9 @@ public class CustomSet<T extends Comparable<? super T>> {private Object[] elemen
     public boolean remove(T element) {
         for (int i = 0; i < size; i++) {
             if (elements[i].equals(element)) {
-                System.arraycopy(elements, i + 1, elements, i, size - i - 1);
+                for (int j = i; j < size - 1; j++) {
+                    elements[j] = elements[j + 1];
+                }
                 elements[--size] = null;
                 return true;
             }
@@ -55,8 +57,13 @@ public class CustomSet<T extends Comparable<? super T>> {private Object[] elemen
     }
 
     private void ensureCapacity() {
-        if (size == elements.length) {
-            elements = Arrays.copyOf(elements, elements.length * 2);
+        if (size >= elements.length) {
+            int newCapacity = elements.length * 2;
+            Object[] newElements = new Object[newCapacity];
+            for (int i = 0; i < elements.length; i++) {
+                newElements[i] = elements[i];
+            }
+            elements = newElements;
         }
     }
 
