@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 
-public class CustomArrayList<T> {
+public class CustomArrayList<T extends Comparable<? super T>> {
     private Object[] elements;
     private int size;
     private static final int DEFAULT_CAPACITY = 10;
@@ -60,7 +60,15 @@ public class CustomArrayList<T> {
     }
 
     public void sort(Comparator<? super T> comparator) {
-        Arrays.sort((T[]) elements, 0, size, comparator);
+        for (int i = 0; i < size - 1; i++) {
+            for (int j = 0; j < size - 1 - i; j++) {
+                if (((T) elements[j]).compareTo((T) elements[j + 1]) > 0) {
+                    Object temp = elements[j];
+                    elements[j] = elements[j + 1];
+                    elements[j + 1] = temp;
+                }
+            }
+        }
     }
 
 }
